@@ -25,7 +25,8 @@ class MainActivity : ComponentActivity() {
             HelloComposeTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                    //Greeting("Android")
+                    InfiniteList()
                 }
             }
         }
@@ -50,7 +51,6 @@ fun Greeting(name: String) {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun DefaultPreview() {
-    //val url = "https://i.picsum.photos/id/529/200/300.jpg?grayscale&hmac=q2vTaddSSZObJj6Ijw50fRonMbPp8NTA2fg-zyWxDPg"
     HelloComposeTheme {
         //    painter = rememberAsyncImagePainter("https://www.example.com/image.jpg"),
     }
