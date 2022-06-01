@@ -11,7 +11,7 @@ class ListData {
 
     suspend fun getList(count: Int, loadMore: Boolean) {
         if (inProgress) {
-            Log.e("++++", "++++ IN PROG SKIP")
+            Log.e("++++", "++++ IN PROGRESS SKIP")
             return
         }
         inProgress = true
@@ -22,7 +22,7 @@ class ListData {
         }
 
         repeat(count) {
-            delay(100)
+            delay(25)
             val index = offset + it
             names.add( "Item $index")
         }

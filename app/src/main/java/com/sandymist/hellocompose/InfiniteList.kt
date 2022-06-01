@@ -17,6 +17,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.flow.distinctUntilChanged
 
+data class ScrollInfo(
+    val lastVisibleItemIndex: Int,
+    val totalItemsNumber: Int
+)
+
 @Preview(showSystemUi = true)
 @Composable
 fun InfiniteList() {
@@ -34,18 +39,17 @@ fun InfiniteList() {
             val totalItemsNumber = layoutInfo.totalItemsCount
             val lastVisibleItemIndex = (layoutInfo.visibleItemsInfo.lastOrNull()?.index ?: 0) + 1
 
-            val status = lastVisibleItemIndex > (totalItemsNumber - 7)
-            Log.e("++++", "LOAD MORE? $status: [$lastVisibleItemIndex > ($totalItemsNumber - 7)]")
-            status
+            ScrollInfo(lastVisibleItemIndex, totalItemsNumber)
         }
     }
 
     LaunchedEffect(loadMore) {
         snapshotFlow { loadMore.value }
-            //.distinctUntilChanged()
+            .distinctUntilChanged()
             .collect {
                 Log.e("++++", "++++ COLLECT LOAD MORE $it")
-                if (it) {
+                val getMore = it.lastVisibleItemIndex > (it.totalItemsNumber - 7)
+                if (getMore) {
                     list.getList(30, true)
                 }
             }
