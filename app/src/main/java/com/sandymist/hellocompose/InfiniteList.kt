@@ -30,7 +30,7 @@ fun InfiniteList() {
     val listState = rememberLazyListState()
 
     LaunchedEffect(key1 = true) {
-        list.getList(30, false)
+        list.getList(30, false, coroutineContext)
     }
 
     val loadMore = remember {
@@ -50,7 +50,7 @@ fun InfiniteList() {
                 Log.e("++++", "++++ COLLECT LOAD MORE $it")
                 val getMore = it.lastVisibleItemIndex > (it.totalItemsNumber - 7)
                 if (getMore) {
-                    list.getList(30, true)
+                    list.getList(30, true, coroutineContext)
                 }
             }
     }
