@@ -54,7 +54,7 @@ fun InfiniteList() {
                 }
             }
     }
-
+/*
     LazyColumn(
         state = listState
     ) {
@@ -68,5 +68,5 @@ fun InfiniteList() {
                 Text("Item $name ...", style = TextStyle(fontSize = 16.sp))
             }
         }
-    }
+    }*/
 }
