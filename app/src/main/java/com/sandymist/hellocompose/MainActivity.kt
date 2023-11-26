@@ -11,8 +11,6 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
@@ -36,7 +34,7 @@ class MainActivity : ComponentActivity() {
 val url = "https://source.unsplash.com/user/c_v_r/1900x800"
 
 @Composable
-fun Greeting(name: String) {
+fun Greeting() {
     Column() {
         Text("One")
         Image(
