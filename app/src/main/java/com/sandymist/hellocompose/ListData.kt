@@ -1,13 +1,12 @@
 package com.sandymist.hellocompose
 
 import android.util.Log
-import androidx.compose.runtime.mutableStateListOf
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlin.coroutines.CoroutineContext
-import kotlin.random.Random
 
 class ListData {
-    val names = mutableStateListOf<String>()
+    val names: MutableStateFlow<List<String>> = MutableStateFlow(listOf())
     private var offset = 0
     private var inProgress = false
     private val repository1 = Repository()

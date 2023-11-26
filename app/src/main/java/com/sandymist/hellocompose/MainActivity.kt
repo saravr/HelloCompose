@@ -23,8 +23,7 @@ class MainActivity : ComponentActivity() {
             HelloComposeTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    //Greeting("Android")
-                    InfiniteList()
+                    ListScreen()
                 }
             }
         }

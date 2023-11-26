@@ -26,7 +26,7 @@ data class ScrollInfo(
 @Composable
 fun InfiniteList() {
     val list = ListData()
-    //val value = list.names.collectAsState(initial = listOf())
+    val value = list.names.collectAsState(initial = listOf())
     val listState = rememberLazyListState()
 
     LaunchedEffect(key1 = true) {
