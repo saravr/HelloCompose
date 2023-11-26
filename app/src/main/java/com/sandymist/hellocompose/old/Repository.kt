@@ -1,4 +1,4 @@
-package com.sandymist.hellocompose
+package com.sandymist.hellocompose.old
 
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
