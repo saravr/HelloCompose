@@ -15,15 +15,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.sandymist.hellocompose.ui.theme.HelloComposeTheme
+import com.sandymist.hellocompose.viewmodel.NamesViewModel
 
 class MainActivity : ComponentActivity() {
+    private val namesViewModel = NamesViewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             HelloComposeTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    ListScreen()
+                    ListScreen(namesViewModel)
                 }
             }
         }
