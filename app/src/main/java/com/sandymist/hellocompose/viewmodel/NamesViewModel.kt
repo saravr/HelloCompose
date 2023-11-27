@@ -9,6 +9,34 @@ import kotlinx.coroutines.launch
 
 class NamesViewModel: ViewModel() {
     private var addCounter = 0
+    private val _names = MutableStateFlow(emptyList<String>())
+    val names = _names.asStateFlow()
+    private var data = MutableList(20) {
+        val index = it + 1
+        "Item $index"
+    }
+
+    init {
+        viewModelScope.launch {
+            _names.emit(data)
+        }
+    }
+
+    fun add(name: String) = viewModelScope.launch {
+        Log.e(TAG, "+++++ ADD: $name")
+        data = data.toMutableList()
+        data.add(0, "$name - ${++addCounter}")
+        _names.emit(ArrayList(data))
+    }
+
+    companion object {
+        private const val TAG = "NamesViewModel"
+    }
+}
+
+/*
+class NamesViewModel: ViewModel() {
+    private var addCounter = 0
     private val _names = MutableStateFlow<List<String>>(listOf())
     val names = _names.asStateFlow()
     private var data = MutableList(20) {
@@ -32,3 +60,4 @@ class NamesViewModel: ViewModel() {
         private const val TAG = "NamesViewModel"
     }
 }
+*/
