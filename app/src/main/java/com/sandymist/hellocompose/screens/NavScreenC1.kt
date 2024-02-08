@@ -17,10 +17,10 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
-fun NavScreenC(
+fun NavScreenC1(
     previousRoute: String,
     goBack: () -> Unit,
-    navigateToC1: () -> Unit,
+    navigateToA: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
 
@@ -32,17 +32,17 @@ fun NavScreenC(
             verticalArrangement = Arrangement.spacedBy(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text("Nav C", style = MaterialTheme.typography.h1)
+            Text("Nav C1", style = MaterialTheme.typography.h1)
             Text(previousRoute, style = MaterialTheme.typography.subtitle1)
             Button(
                 onClick = {
                     scope.launch {
                         delay(1000)
-                        navigateToC1()
+                        navigateToA()
                     }
                 }
             ) {
-                Text("Navigate to C1")
+                Text("Navigate Back to A !!!")
             }
             Button(onClick = { goBack() }) {
                 Text("Go back")
@@ -53,6 +53,6 @@ fun NavScreenC(
 
 @Preview
 @Composable
-fun PreviewNavScreenC() {
-    //NavScreenC({}, {})
+fun PreviewNavScreenC1() {
+    //NavScreenC1({}, {})
 }

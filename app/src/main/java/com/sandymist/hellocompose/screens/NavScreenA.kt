@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun NavScreenA(
+    previousRoute: String,
     goBack: () -> Unit,
     navigateToB: () -> Unit,
 ) {
@@ -27,6 +28,7 @@ fun NavScreenA(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text("Nav A", style = MaterialTheme.typography.h1)
+            Text(previousRoute, style = MaterialTheme.typography.subtitle1)
             Button(onClick = { navigateToB() }) {
                 Text("Navigate to B")
             }
@@ -40,5 +42,5 @@ fun NavScreenA(
 @Preview
 @Composable
 fun PreviewNavScreenA() {
-    NavScreenA({}, {})
+    //NavScreenA({}, {})
 }
