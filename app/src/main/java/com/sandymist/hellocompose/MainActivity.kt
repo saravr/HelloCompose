@@ -3,22 +3,21 @@ package com.sandymist.hellocompose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.sandymist.hellocompose.screens.NavScreenA
+import com.sandymist.hellocompose.screens.NavScreenB
+import com.sandymist.hellocompose.screens.NavScreenC
 import com.sandymist.hellocompose.ui.theme.HelloComposeTheme
-import com.sandymist.hellocompose.viewmodel.NamesViewModel
+//import com.sandymist.hellocompose.viewmodel.NamesViewModel
 
 class MainActivity : ComponentActivity() {
-    private val namesViewModel = NamesViewModel()
+    //private val namesViewModel = NamesViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,25 +25,39 @@ class MainActivity : ComponentActivity() {
             HelloComposeTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    ListScreen(namesViewModel)
+                    //ListScreen(namesViewModel)
+                    NavContent()
                 }
             }
         }
     }
 }
 
-val url = "https://source.unsplash.com/user/c_v_r/1900x800"
-
 @Composable
-fun Greeting() {
-    Column() {
-        Text("One")
-        Image(
-            painter = rememberAsyncImagePainter(url),
-            contentDescription = null,
-            modifier = Modifier.size(128.dp)
-        )
-        Text("Two")
+fun NavContent() {
+    val navController = rememberNavController()
+    NavHost(
+        navController = navController,
+        startDestination = "navA"
+    ) {
+        composable("navA") {
+            NavScreenA(
+                goBack = { navController.popBackStack() },
+                navigateToB = { navController.navigate("navB") },
+            )
+        }
+        composable("navB") {
+            NavScreenB(
+                goBack = { navController.popBackStack() },
+                navigateToC = { navController.navigate("navC") },
+            )
+        }
+        composable("navC") {
+            NavScreenC(
+                goBack = { navController.popBackStack() },
+                navigateToA = { navController.navigate("navA") },
+            )
+        }
     }
 }
 
