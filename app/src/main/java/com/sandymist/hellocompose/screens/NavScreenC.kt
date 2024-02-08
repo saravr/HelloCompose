@@ -21,6 +21,7 @@ fun NavScreenC(
     previousRoute: String,
     goBack: () -> Unit,
     navigateToC1: () -> Unit,
+    navigateToWeb: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
 
@@ -43,6 +44,11 @@ fun NavScreenC(
                 }
             ) {
                 Text("Navigate to C1")
+            }
+            Button(onClick = {
+                navigateToWeb()
+            }) {
+                Text("Visit a website")
             }
             Button(onClick = { goBack() }) {
                 Text("Go back")

@@ -10,6 +10,7 @@ import com.sandymist.hellocompose.screens.NavScreenA
 import com.sandymist.hellocompose.screens.NavScreenB
 import com.sandymist.hellocompose.screens.NavScreenC
 import com.sandymist.hellocompose.screens.NavScreenC1
+import com.sandymist.hellocompose.screens.WebScreen
 
 @Composable
 fun NavContent() {
@@ -37,6 +38,7 @@ fun NavContent() {
                 previousRoute = navController.previousBackStackEntry?.destination?.route ?: "None",
                 goBack = { navController.popBackStack() },
                 navigateToC1 = { navController.navigate("navC1") },
+                navigateToWeb = { navController.navigate("web") },
             )
         }
         composable("navC1") {
@@ -45,6 +47,9 @@ fun NavContent() {
                 goBack = { navController.popBackStack() },
                 navigateToA = { navController.navigate("navA") },
             )
+        }
+        composable("web") {
+            WebScreen("https://sandymist.github.io/ai.html", navController)
         }
     }
 }
