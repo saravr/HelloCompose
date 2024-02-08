@@ -49,7 +49,15 @@ fun NavContent() {
             )
         }
         composable("web") {
-            WebScreen("https://sandymist.github.io/ai.html", navController)
+            WebScreen("https://sandymist.github.io/ai.html", navController) {
+                navController.navigate(it) {
+                    popUpTo(navController.graph.findStartDestination().id) {
+                        saveState = true
+                    }
+                    launchSingleTop = true
+                    restoreState = true
+                }
+            }
         }
     }
 }
