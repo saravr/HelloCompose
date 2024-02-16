@@ -6,12 +6,16 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.tooling.preview.Preview
 import com.sandymist.hellocompose.ui.theme.HelloComposeTheme
-//import com.sandymist.hellocompose.viewmodel.NamesViewModel
+import com.sandymist.hellocompose.viewmodel.NamesViewModel
+
+private const val NumItems = 10
 
 class MainActivity : ComponentActivity() {
-    //private val namesViewModel = NamesViewModel()
+    private val namesViewModel = NamesViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +24,12 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
                     //ListScreen(namesViewModel)
-                    NavContent()
+                    val listItems = remember {
+                        List(NumItems) { index -> Item(index) }
+                            .toMutableStateList()
+                    }
+                    AnimatedListScreen(listItems)
+                    //NavContent()
                 }
             }
         }

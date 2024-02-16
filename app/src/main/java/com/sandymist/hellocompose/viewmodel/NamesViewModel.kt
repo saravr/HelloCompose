@@ -1,11 +1,11 @@
 package com.sandymist.hellocompose.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class NamesViewModel: ViewModel() {
     private var addCounter = 0
@@ -23,14 +23,10 @@ class NamesViewModel: ViewModel() {
     }
 
     fun add(name: String) = viewModelScope.launch {
-        Log.e(TAG, "+++++ ADD: $name")
+        Timber.e("+++++ ADD: $name")
         data = data.toMutableList()
         data.add(0, "$name - ${++addCounter}")
         _names.emit(ArrayList(data))
-    }
-
-    companion object {
-        private const val TAG = "NamesViewModel"
     }
 }
 
