@@ -1,8 +1,5 @@
 package com.sandymist.hellocompose
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -22,9 +19,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshots.SnapshotStateList
-import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,29 +27,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sandymist.hellocompose.ui.theme.HelloComposeTheme
 import kotlin.random.Random
-
-private const val NumItems = 10
-
-class AnimatedListActivity : ComponentActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            HelloComposeTheme {
-                val listItems = remember {
-                    List(NumItems) { index -> Item(index) }
-                        .toMutableStateList()
-                }
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    AnimatedListScreen(listItems = listItems)
-                }
-            }
-        }
-    }
-}
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -170,7 +142,7 @@ fun ListItem(
     ) {
         Text(
             text = label,
-            style = MaterialTheme.typography.body1,
+            style = MaterialTheme.typography.h4,
         )
     }
 }
