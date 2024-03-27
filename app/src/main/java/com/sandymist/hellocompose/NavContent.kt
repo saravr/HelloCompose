@@ -1,6 +1,7 @@
 package com.sandymist.hellocompose
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
@@ -13,7 +14,7 @@ import com.sandymist.hellocompose.screens.NavScreenC1
 import com.sandymist.hellocompose.screens.WebScreen
 
 @Composable
-fun NavContent() {
+fun NavContent(modifier: Modifier) {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
@@ -21,6 +22,7 @@ fun NavContent() {
     ) {
         composable("navA") {
             NavScreenA(
+                modifier = modifier,
                 previousRoute = navController.previousBackStackEntry?.destination?.route ?: "None",
                 goBack = { navController.popBackStack() },
                 navigateToB = { navController.navFromRoot("navB") },
